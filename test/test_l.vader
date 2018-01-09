@@ -1,0 +1,189 @@
+
+===============================================================================
+Given (sample text):
+    The  qu1ck brown_fox
+===============================================================================
+Do (search limit):
+    0flaX
+Expect (found space after e):
+    The X qu1ck brown_fox
+--------------------------------
+Do (search before limit):
+    0tlaX
+Expect (found e):
+    TheX  qu1ck brown_fox
+--------------------------------
+Do (search after limit):
+    0fxlaX
+Expect (found space before q):
+    The  Xqu1ck brown_fox
+--------------------------------------------------
+Do (search backward for limit):
+    $FlaX
+Expect (found _):
+    The  qu1ck brown_Xfox
+--------------------------------
+Do (search backward before limit):
+    $TlaX
+Expect (found f):
+    The  qu1ck brown_fXox
+--------------------------------
+Do (search backward after limit):
+    $FxlaX
+Expect (found n):
+    The  qu1ck brownX_fox
+--------------------------------------------------
+Do (search alt limit):
+    0fglaX
+Expect (found space before T):
+    XThe  qu1ck brown_fox
+--------------------------------
+Do (search before alt limit):
+    0tglaX
+Expect (found 2nd space before q):
+    The X qu1ck brown_fox
+--------------------------------
+Do (search after alt limit):
+    0fgxlaX
+Expect (found T):
+    TXhe  qu1ck brown_fox
+--------------------------------------------------
+Do (search backward for alt limit):
+    $FglaX
+Expect (found _):
+    The  qu1ck brown_Xfox
+--------------------------------
+Do (search backward before alt limit):
+    $TglaX
+Expect (found f):
+    The  qu1ck brown_fXox
+--------------------------------
+Do (search backward after alt limit):
+    $FgxlaX
+Expect (found n):
+    The  qu1ck brownX_fox
+
+===============================================================================
+Given (sample text 2):
+    The   qu1ck brown___fox
+===============================================================================
+Do (search limit):
+    0flaX
+Expect (found space after e):
+    The X  qu1ck brown___fox
+--------------------------------
+Do (search 2nd limit):
+    02flaX
+Expect (found space after k):
+    The   qu1ck Xbrown___fox
+--------------------------------
+Do (search before limit):
+    0tlaX
+Expect (found e):
+    TheX   qu1ck brown___fox
+--------------------------------
+Do (search 2nd before limit):
+    02tlaX
+Expect (found k):
+    The   qu1ckX brown___fox
+--------------------------------
+Do (search after limit):
+    0fxlaX
+Expect (found 2nd space after e):
+    The  X qu1ck brown___fox
+--------------------------------
+Do (search 2nd after limit):
+    02fxlaX
+Expect (found b):
+    The   qu1ck bXrown___fox
+--------------------------------------------------
+Do (search backward for limit):
+    $FlaX
+Expect (found _ before f):
+    The   qu1ck brown___Xfox
+--------------------------------
+Do (search 2nd backward for limit):
+    $2FlaX
+Expect (found space before b):
+    The   qu1ck Xbrown___fox
+--------------------------------
+Do (search backward before limit):
+    $TlaX
+Expect (found f):
+    The   qu1ck brown___fXox
+--------------------------------
+Do (search 2nd backward before limit):
+    $2TlaX
+Expect (found b):
+    The   qu1ck bXrown___fox
+--------------------------------
+Do (search backward after limit):
+    $FxlaX
+Expect (found 2nd _ before f):
+    The   qu1ck brown__X_fox
+--------------------------------
+Do (search 2nd backward after limit):
+    $2FxlaX
+Expect (found k):
+    The   qu1ckX brown___fox
+--------------------------------------------------
+Do (search alt limit):
+    0fglaX
+Expect (found space before T):
+    XThe   qu1ck brown___fox
+--------------------------------
+Do (search 2nd alt limit):
+    02fglaX
+Expect (found space before q):
+    The   Xqu1ck brown___fox
+--------------------------------
+Do (search before alt limit):
+    0tglaX
+Expect (found 2nd space before q):
+    The  X qu1ck brown___fox
+--------------------------------
+Do (search 2nd before alt limit):
+    02tglaX
+Expect (found k):
+    The   qu1ckX brown___fox
+--------------------------------
+Do (search after alt limit):
+    0fgxlaX
+Expect (found T):
+    TXhe   qu1ck brown___fox
+--------------------------------
+Do (search 2nd after alt limit):
+    02fgxlaX
+Expect (found q):
+    The   qXu1ck brown___fox
+--------------------------------------------------
+Do (search backward for alt limit):
+    $FglaX
+Expect (found space after n):
+    The   qu1ck brown_X__fox
+--------------------------------
+Do (search 2nd backward for alt limit):
+    $2FglaX
+Expect (found space after k):
+    The   qu1ck Xbrown___fox
+--------------------------------
+Do (search backward before alt limit):
+    $TglaX
+Expect (found 2nd space after n):
+    The   qu1ck brown__X_fox
+--------------------------------
+Do (search 2nd backward before alt limit):
+    $2TglaX
+Expect (found b):
+    The   qu1ck bXrown___fox
+--------------------------------
+Do (search backward after alt limit):
+    $FgxlaX
+Expect (found n):
+    The   qu1ck brownX___fox
+--------------------------------
+Do (search 2nd backward after alt limit):
+    $2FgxlaX
+Expect (found k):
+    The   qu1ckX brown___fox
+

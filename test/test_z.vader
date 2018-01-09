@@ -1,0 +1,50 @@
+
+===============================================================================
+Given (sample text):
+    The quick brown fox jumps
+===============================================================================
+Do (search b4eol):
+    0fzaX
+Expect (found p):
+    The quick brown fox jumpXs
+--------------------------------
+Do (search before b4eol):
+    0tzaX
+Expect (found m):
+    The quick brown fox jumXps
+--------------------------------------------------
+Do (search backward for b4eol):
+    $FzaX
+Expect (found h):
+    ThXe quick brown fox jumps
+--------------------------------
+Do (search backward before b4eol):
+    $TzaX
+Expect (found e):
+    TheX quick brown fox jumps
+--------------------------------
+
+===============================================================================
+Given (sample text with trailing spaces):
+    The quick brown fox jumps  
+===============================================================================
+Do (search b4eol):
+    0fzaX
+Expect (found p):
+    The quick brown fox jumpXs  
+--------------------------------
+Do (search before b4eol):
+    0tzaX
+Expect (found m):
+    The quick brown fox jumXps  
+--------------------------------------------------
+Do (search backward for b4eol):
+    $FzaX
+Expect (found h):
+    ThXe quick brown fox jumps  
+--------------------------------
+Do (search backward before b4eol):
+    $TzaX
+Expect (found e):
+    TheX quick brown fox jumps  
+--------------------------------

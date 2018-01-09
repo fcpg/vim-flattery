@@ -1,0 +1,767 @@
+
+===============================================================================
+Given (sample text):
+    The  qu1ck brown_fox
+===============================================================================
+Do (search word):
+    0fwaX
+Expect (found T):
+    TXhe  qu1ck brown_fox
+--------------------------------
+Do (search before word):
+    0twaX
+Expect (found space before T):
+    XThe  qu1ck brown_fox
+--------------------------------
+Do (search after word):
+    0fxwaX
+Expect (found h):
+    ThXe  qu1ck brown_fox
+--------------------------------------------------
+Do (search backward for word):
+    $FlaX
+Expect (found _):
+    The  qu1ck brown_Xfox
+--------------------------------
+Do (search backward before word):
+    $TwaX
+Expect (found r):
+    The  qu1ck brXown_fox
+--------------------------------
+Do (search backward after word):
+    $FxwaX
+Expect (found space before b):
+    The  qu1ck Xbrown_fox
+--------------------------------------------------
+Do (search alt word):
+    0fgwaX
+Expect (found e):
+    TheX  qu1ck brown_fox
+--------------------------------
+Do (search before alt word):
+    0tgwaX
+Expect (found h):
+    ThXe  qu1ck brown_fox
+--------------------------------
+Do (search after alt word):
+    0fgxwaX
+Expect (found space after e):
+    The X qu1ck brown_fox
+--------------------------------------------------
+Do (search backward for alt word):
+    $FgwaX
+Expect (found n):
+    The  qu1ck brownX_fox
+--------------------------------
+Do (search backward before alt word):
+    $TgwaX
+Expect (found _):
+    The  qu1ck brown_Xfox
+--------------------------------
+Do (search backward after alt word):
+    $FgxwaX
+Expect (found w):
+    The  qu1ck browXn_fox
+
+===============================================================================
+Given (sample text 2):
+    The   qu1ck brown___fox
+===============================================================================
+Do (search word):
+    0fwaX
+Expect (found T):
+    TXhe   qu1ck brown___fox
+--------------------------------
+Do (search 2nd word):
+    02fwaX
+Expect (found q):
+    The   qXu1ck brown___fox
+--------------------------------
+Do (search before word):
+    0twaX
+Expect (found space before T):
+    XThe   qu1ck brown___fox
+--------------------------------
+Do (search 2nd before word):
+    02twaX
+Expect (found space before q):
+    The   Xqu1ck brown___fox
+--------------------------------
+Do (search after word):
+    0fxwaX
+Expect (found h):
+    ThXe   qu1ck brown___fox
+--------------------------------
+Do (search 2nd after word):
+    02fxwaX
+Expect (found u):
+    The   quX1ck brown___fox
+--------------------------------------------------
+Do (search backward for word):
+    $FwaX
+Expect (found b):
+    The   qu1ck bXrown___fox
+--------------------------------
+Do (search 2nd backward for word):
+    $2FwaX
+Expect (found q):
+    The   qXu1ck brown___fox
+--------------------------------
+Do (search backward before word):
+    $TwaX
+Expect (found r):
+    The   qu1ck brXown___fox
+--------------------------------
+Do (search 2nd backward before word):
+    $2TwaX
+Expect (found u):
+    The   quX1ck brown___fox
+--------------------------------
+Do (search backward after word):
+    $FxwaX
+Expect (found space before b):
+    The   qu1ck Xbrown___fox
+--------------------------------
+Do (search 2nd backward after word):
+    $2FxwaX
+Expect (found space before q):
+    The   Xqu1ck brown___fox
+--------------------------------------------------
+Do (search alt word):
+    0fgwaX
+Expect (found e):
+    TheX   qu1ck brown___fox
+--------------------------------
+Do (search 2nd alt word):
+    02fgwaX
+Expect (found k):
+    The   qu1ckX brown___fox
+--------------------------------
+Do (search before alt word):
+    0tgwaX
+Expect (found h):
+    ThXe   qu1ck brown___fox
+--------------------------------
+Do (search 2nd before alt word):
+    02tgwaX
+Expect (found c):
+    The   qu1cXk brown___fox
+--------------------------------
+Do (search after alt word):
+    0fgxwaX
+Expect (found space after e):
+    The X  qu1ck brown___fox
+--------------------------------
+Do (search 2nd after alt word):
+    02fgxwaX
+Expect (found space after k):
+    The   qu1ck Xbrown___fox
+--------------------------------------------------
+Do (search backward for alt word):
+    $FgwaX
+Expect (found n):
+    The   qu1ck brownX___fox
+--------------------------------
+Do (search 2nd backward for alt word):
+    $2FgwaX
+Expect (found k):
+    The   qu1ckX brown___fox
+--------------------------------
+Do (search backward before alt word):
+    $TgwaX
+Expect (found space after n):
+    The   qu1ck brown_X__fox
+--------------------------------
+Do (search 2nd backward before alt word):
+    $2TgwaX
+Expect (found space after k):
+    The   qu1ck Xbrown___fox
+--------------------------------
+Do (search backward after alt word):
+    $FgxwaX
+Expect (found w):
+    The   qu1ck browXn___fox
+--------------------------------
+Do (search 2nd backward after alt word):
+    $2FgxwaX
+Expect (found c):
+    The   qu1cXk brown___fox
+
+===============================================================================
+Given (sample text 3):
+    The qu1ck  brown   fox    jumps 
+===============================================================================
+Do (search word):
+    0fwaX
+Expect (found T):
+    TXhe qu1ck  brown   fox    jumps 
+--------------------------------
+Do (search 2nd word):
+    02fwaX
+Expect (found q):
+    The qXu1ck  brown   fox    jumps 
+--------------------------------
+Do (search 3rd word):
+    03fwaX
+Expect (found b):
+    The qu1ck  bXrown   fox    jumps 
+--------------------------------
+Do (search 4th word):
+    04fwaX
+Expect (found f):
+    The qu1ck  brown   fXox    jumps 
+--------------------------------
+Do (search from space before word):
+    _hfwaX
+Expect (found T):
+    TXhe qu1ck  brown   fox    jumps 
+--------------------------------
+Do (search from within word):
+    _lfwaX
+Expect (found q):
+    The qXu1ck  brown   fox    jumps 
+--------------------------------
+Do (search from end of word):
+    _efwaX
+Expect (found q):
+    The qXu1ck  brown   fox    jumps 
+--------------------------------
+Do (search from space between two word):
+    _elfwaX
+Expect (found q):
+    The qXu1ck  brown   fox    jumps 
+--------------------------------
+Do (search from space after word):
+    _eelfwaX
+Expect (found b):
+    The qu1ck  bXrown   fox    jumps 
+--------------------------------
+Do (search from space with no adjacent word):
+    _3e2lfwaX
+Expect (found f):
+    The qu1ck  brown   fXox    jumps 
+--------------------------------------------------
+Do (search before word):
+    0twaX
+Expect (found before T):
+    XThe qu1ck  brown   fox    jumps 
+--------------------------------
+Do (search before 2nd word):
+    02twaX
+Expect (found before q):
+    The Xqu1ck  brown   fox    jumps 
+--------------------------------
+Do (search before 3rd word):
+    03twaX
+Expect (found before b):
+    The qu1ck  Xbrown   fox    jumps 
+--------------------------------
+Do (search before 4th word):
+    04twaX
+Expect (found before f):
+    The qu1ck  brown   Xfox    jumps 
+--------------------------------
+Do (search before word from space before word):
+    _htwaX
+Expect (found before q):
+    The Xqu1ck  brown   fox    jumps 
+--------------------------------
+Do (search before word from within word):
+    _ltwaX
+Expect (found before q):
+    The Xqu1ck  brown   fox    jumps 
+--------------------------------
+Do (search before word from end of word):
+    _etwaX
+Expect (found before q):
+    The Xqu1ck  brown   fox    jumps 
+--------------------------------
+Do (search before word from space between two word):
+    _eltwaX
+Expect (found before b):
+    The qu1ck  Xbrown   fox    jumps 
+--------------------------------
+Do (search before word from space after word):
+    _eeltwaX
+Expect (found before b):
+    The qu1ck  Xbrown   fox    jumps 
+--------------------------------
+Do (search before word from space with no adjacent word):
+    _3e2ltwaX
+Expect (found before f):
+    The qu1ck  brown   Xfox    jumps 
+--------------------------------------------------
+Do (search after word):
+    0fxwaX
+Expect (found h):
+    ThXe qu1ck  brown   fox    jumps 
+--------------------------------
+Do (search after 2nd word):
+    02fxwaX
+Expect (found u):
+    The quX1ck  brown   fox    jumps 
+--------------------------------
+Do (search after 3rd word):
+    03fxwaX
+Expect (found r):
+    The qu1ck  brXown   fox    jumps 
+--------------------------------
+Do (search after 4th word):
+    04fxwaX
+Expect (found o):
+    The qu1ck  brown   foXx    jumps 
+--------------------------------
+Do (search after word from before space):
+    _hfxwaX
+Expect (found h):
+    ThXe qu1ck  brown   fox    jumps 
+--------------------------------
+Do (search after word from within word):
+    _lfxwaX
+Expect (found u):
+    The quX1ck  brown   fox    jumps 
+--------------------------------
+Do (search after word from before end of word):
+    _efxwaX
+Expect (found u):
+    The quX1ck  brown   fox    jumps 
+--------------------------------
+Do (search after word from before space between two word):
+    _elfxwaX
+Expect (found u):
+    The quX1ck  brown   fox    jumps 
+--------------------------------
+Do (search after word from before space after word):
+    _eelfxwaX
+Expect (found r):
+    The qu1ck  brXown   fox    jumps 
+--------------------------------
+Do (search after word from before space with no adjacent word):
+    _3e2lfxwaX
+Expect (found o):
+    The qu1ck  brown   foXx    jumps 
+--------------------------------------------------
+Do (alt search word):
+    0fgwaX
+Expect (found e):
+    TheX qu1ck  brown   fox    jumps 
+--------------------------------
+Do (alt search 2nd word):
+    02fgwaX
+Expect (found k):
+    The qu1ckX  brown   fox    jumps 
+--------------------------------
+Do (alt search 3rd word):
+    03fgwaX
+Expect (found n):
+    The qu1ck  brownX   fox    jumps 
+--------------------------------
+Do (alt search 4th word):
+    04fgwaX
+Expect (found x):
+    The qu1ck  brown   foxX    jumps 
+--------------------------------
+Do (alt search from space before word):
+    _hfgwaX
+Expect (found e):
+    TheX qu1ck  brown   fox    jumps 
+--------------------------------
+Do (alt search from within word):
+    _lfgwaX
+Expect (found k):
+    The qu1ckX  brown   fox    jumps 
+--------------------------------
+Do (alt search from end of word):
+    _efgwaX
+Expect (found k):
+    The qu1ckX  brown   fox    jumps 
+--------------------------------
+Do (alt search from space betgween two word):
+    _elfgwaX
+Expect (found k):
+    The qu1ckX  brown   fox    jumps 
+--------------------------------
+Do (alt search from space after word):
+    _eelfgwaX
+Expect (found n):
+    The qu1ck  brownX   fox    jumps 
+--------------------------------
+Do (alt search from space with no adjacent word):
+    _3e2lfgwaX
+Expect (found x):
+    The qu1ck  brown   foxX    jumps 
+--------------------------------------------------
+Do (alt search before word):
+    0tgwaX
+Expect (found h):
+    ThXe qu1ck  brown   fox    jumps 
+--------------------------------
+Do (alt search before 2nd word):
+    02tgwaX
+Expect (found c):
+    The qu1cXk  brown   fox    jumps 
+--------------------------------
+Do (alt search before 3rd word):
+    03tgwaX
+Expect (found w):
+    The qu1ck  browXn   fox    jumps 
+--------------------------------
+Do (alt search before 4th word):
+    04tgwaX
+Expect (found before o):
+    The qu1ck  brown   foXx    jumps 
+--------------------------------
+Do (alt search before word from space before word):
+    _htgwaX
+Expect (found h):
+    ThXe qu1ck  brown   fox    jumps 
+--------------------------------
+Do (alt search before word from within word):
+    _ltgwaX
+Expect (found c):
+    The qu1cXk  brown   fox    jumps 
+--------------------------------
+Do (alt search before word from end of word):
+    _etgwaX
+Expect (found c):
+    The qu1cXk  brown   fox    jumps 
+--------------------------------
+Do (alt search before word from space betgween two word):
+    _eltgwaX
+Expect (found c):
+    The qu1cXk  brown   fox    jumps 
+--------------------------------
+Do (alt search before word from space after word):
+    _eeltgwaX
+Expect (found w):
+    The qu1ck  browXn   fox    jumps 
+--------------------------------
+Do (alt search before word from space with no adjacent word):
+    _3e2ltgwaX
+Expect (found o):
+    The qu1ck  brown   foXx    jumps 
+--------------------------------------------------
+Do (alt search after word):
+    0fgxwaX
+Expect (found space after e):
+    The Xqu1ck  brown   fox    jumps 
+--------------------------------
+Do (alt search after 2nd word):
+    02fgxwaX
+Expect (found space after k):
+    The qu1ck X brown   fox    jumps 
+--------------------------------
+Do (alt search after 3rd word):
+    03fgxwaX
+Expect (found soace after n):
+    The qu1ck  brown X  fox    jumps 
+--------------------------------
+Do (alt search after 4th word):
+    04fgxwaX
+Expect (found space after x):
+    The qu1ck  brown   fox X   jumps 
+--------------------------------
+Do (alt search after word from before space):
+    _hfgxwaX
+Expect (found space after e):
+    The Xqu1ck  brown   fox    jumps 
+--------------------------------
+Do (alt search after word from within word):
+    _lfgxwaX
+Expect (found space after k):
+    The qu1ck X brown   fox    jumps 
+--------------------------------
+Do (alt search after word from before end of word):
+    _efgxwaX
+Expect (found space after k):
+    The qu1ck X brown   fox    jumps 
+--------------------------------
+Do (alt search after word from before space betgween two word):
+    _elfgxwaX
+Expect (found space after k):
+    The qu1ck X brown   fox    jumps 
+--------------------------------
+Do (alt search after word from before space after word):
+    _eelfgxwaX
+Expect (found space after n):
+    The qu1ck  brown X  fox    jumps 
+--------------------------------
+Do (alt search after word from before space with no adjacent word):
+    _3e2lfgxwaX
+Expect (found space after x):
+    The qu1ck  brown   fox X   jumps 
+
+===============================================================================
+Given (sample text 4):
+    The    qu1ck   brown  fox jumps 
+===============================================================================
+Do (search backward word):
+    $FwaX
+Expect (found j):
+    The    qu1ck   brown  fox jXumps 
+--------------------------------
+Do (search backward 2nd word):
+    $2FwaX
+Expect (found f):
+    The    qu1ck   brown  fXox jumps 
+--------------------------------
+Do (search backward 3rd word):
+    $3FwaX
+Expect (found b):
+    The    qu1ck   bXrown  fox jumps 
+--------------------------------
+Do (search backward 4th word):
+    $4FwaX
+Expect (found q):
+    The    qXu1ck   brown  fox jumps 
+--------------------------------
+Do (search backward from end of word):
+    g_FwaX
+Expect (found f):
+    The    qu1ck   brown  fXox jumps 
+--------------------------------
+Do (search backward from middle of word):
+    g_hFwaX
+Expect (found f):
+    The    qu1ck   brown  fXox jumps 
+--------------------------------
+Do (search backward from start of word):
+    g_bFwaX
+Expect (found f):
+    The    qu1ck   brown  fXox jumps 
+--------------------------------
+Do (search backward from space between two words):
+    g_bhFwaX
+Expect (found f):
+    The    qu1ck   brown  fXox jumps 
+--------------------------------
+Do (search backward from space before word):
+    g_bbhFwaX
+Expect (found b):
+    The    qu1ck   bXrown  fox jumps 
+--------------------------------------------------
+Do (search backward before word):
+    $TwaX
+Expect (found u):
+    The    qu1ck   brown  fox juXmps 
+--------------------------------
+Do (search backward before 2nd word):
+    $2TwaX
+Expect (found o):
+    The    qu1ck   brown  foXx jumps 
+--------------------------------
+Do (search backward before 3rd word):
+    $3TwaX
+Expect (found r):
+    The    qu1ck   brXown  fox jumps 
+--------------------------------
+Do (search backward before 4th word):
+    $4TwaX
+Expect (found u):
+    The    quX1ck   brown  fox jumps 
+--------------------------------
+Do (search backward before word from end of word):
+    g_TwaX
+Expect (found o):
+    The    qu1ck   brown  foXx jumps 
+--------------------------------
+Do (search backward before word from middle of word):
+    g_hTwaX
+Expect (found o):
+    The    qu1ck   brown  foXx jumps 
+--------------------------------
+Do (search backward before word from start of word):
+    g_bTwaX
+Expect (found o):
+    The    qu1ck   brown  foXx jumps 
+--------------------------------
+Do (search backward before word from space between two words):
+    g_bhTwaX
+Expect (found o):
+    The    qu1ck   brown  foXx jumps 
+--------------------------------
+Do (search backward before word from space before word):
+    g_bbhTwaX
+Expect (found r):
+    The    qu1ck   brXown  fox jumps 
+--------------------------------------------------
+Do (search backward after word):
+    $FxwaX
+Expect (found space before j):
+    The    qu1ck   brown  fox Xjumps 
+--------------------------------
+Do (search backward after 2nd word):
+    $2FxwaX
+Expect (found space before f):
+    The    qu1ck   brown  Xfox jumps 
+--------------------------------
+Do (search backward after 3rd word):
+    $3FxwaX
+Expect (found space before b):
+    The    qu1ck   Xbrown  fox jumps 
+--------------------------------
+Do (search backward after 4th word):
+    $4FxwaX
+Expect (found space before q):
+    The    Xqu1ck   brown  fox jumps 
+--------------------------------
+Do (search backward after word from end of word):
+    g_FxwaX
+Expect (found space before f):
+    The    qu1ck   brown  Xfox jumps 
+--------------------------------
+Do (search backward after word from middle of word):
+    g_hFxwaX
+Expect (found space before f):
+    The    qu1ck   brown  Xfox jumps 
+--------------------------------
+Do (search backward after word from start of word):
+    g_bFxwaX
+Expect (found space before f):
+    The    qu1ck   brown  Xfox jumps 
+--------------------------------
+Do (search backward after word from space between two words):
+    g_bhFxwaX
+Expect (found space before f):
+    The    qu1ck   brown  Xfox jumps 
+--------------------------------
+Do (search backward after word from space before word):
+    g_bbhFxwaX
+Expect (found space before b):
+    The    qu1ck   Xbrown  fox jumps 
+--------------------------------------------------
+Do (alt search backward word):
+    $FgwaX
+Expect (found s):
+    The    qu1ck   brown  fox jumpsX 
+--------------------------------
+Do (alt search backward 2nd word):
+    $2FgwaX
+Expect (found x):
+    The    qu1ck   brown  foxX jumps 
+--------------------------------
+Do (alt search backward 3rd word):
+    $3FgwaX
+Expect (found n):
+    The    qu1ck   brownX  fox jumps 
+--------------------------------
+Do (alt search backward 4th word):
+    $4FgwaX
+Expect (found k):
+    The    qu1ckX   brown  fox jumps 
+--------------------------------
+Do (alt search backward from end of word):
+    g_FgwaX
+Expect (found x):
+    The    qu1ck   brown  foxX jumps 
+--------------------------------
+Do (alt search backward from middle of word):
+    g_hFgwaX
+Expect (found x):
+    The    qu1ck   brown  foxX jumps 
+--------------------------------
+Do (alt search backward from start of word):
+    g_bFgwaX
+Expect (found x):
+    The    qu1ck   brown  foxX jumps 
+--------------------------------
+Do (alt search backward from space betgween two words):
+    g_bhFgwaX
+Expect (found x):
+    The    qu1ck   brown  foxX jumps 
+--------------------------------
+Do (alt search backward from space before word):
+    g_bbhFgwaX
+Expect (found n):
+    The    qu1ck   brownX  fox jumps 
+--------------------------------------------------
+Do (alt search backward before word):
+    $TgwaX
+Expect (found space after x):
+    The    qu1ck   brown  fox Xjumps 
+--------------------------------
+Do (alt search backward before 2nd word):
+    $2TgwaX
+Expect (found space after n):
+    The    qu1ck   brown X fox jumps 
+--------------------------------
+Do (alt search backward before 3rd word):
+    $3TgwaX
+Expect (found space after k):
+    The    qu1ck X  brown  fox jumps 
+--------------------------------
+Do (alt search backward before 4th word):
+    $4TgwaX
+Expect (found space after e):
+    The X   qu1ck   brown  fox jumps 
+--------------------------------
+Do (alt search backward before word from end of word):
+    g_TgwaX
+Expect (found space after x):
+    The    qu1ck   brown  fox Xjumps 
+--------------------------------
+Do (alt search backward before word from middle of word):
+    g_hTgwaX
+Expect (found space after x):
+    The    qu1ck   brown  fox Xjumps 
+--------------------------------
+Do (alt search backward before word from start of word):
+    g_bTgwaX
+Expect (found space after x):
+    The    qu1ck   brown  fox Xjumps 
+--------------------------------
+Do (alt search backward before word from space betgween two words):
+    g_bhTgwaX
+Expect (found space after n):
+    The    qu1ck   brown X fox jumps 
+--------------------------------
+Do (alt search backward before word from space before word):
+    g_bbhTgwaX
+Expect (found space after n):
+    The    qu1ck   brown X fox jumps 
+--------------------------------------------------
+Do (alt search backward after word):
+    $FgxwaX
+Expect (found p):
+    The    qu1ck   brown  fox jumpXs 
+--------------------------------
+Do (alt search backward after 2nd word):
+    $2FgxwaX
+Expect (found o):
+    The    qu1ck   brown  foXx jumps 
+--------------------------------
+Do (alt search backward after 3rd word):
+    $3FgxwaX
+Expect (found w):
+    The    qu1ck   browXn  fox jumps 
+--------------------------------
+Do (alt search backward after 4th word):
+    $4FgxwaX
+Expect (found c):
+    The    qu1cXk   brown  fox jumps 
+--------------------------------
+Do (alt search backward after word from end of word):
+    g_FgxwaX
+Expect (found p):
+    The    qu1ck   brown  fox jumpXs 
+--------------------------------
+Do (alt search backward after word from middle of word):
+    g_hFgxwaX
+Expect (found o):
+    The    qu1ck   brown  foXx jumps 
+--------------------------------
+Do (alt search backward after word from start of word):
+    g_bFgxwaX
+Expect (found o):
+    The    qu1ck   brown  foXx jumps 
+--------------------------------
+Do (alt search backward after word from space betgween two words):
+    g_bhFgxwaX
+Expect (found o):
+    The    qu1ck   brown  foXx jumps 
+--------------------------------
+Do (alt search backward after word from space before word):
+    g_bbhFgxwaX
+Expect (found w):
+    The    qu1ck   browXn  fox jumps 
+--------------------------------

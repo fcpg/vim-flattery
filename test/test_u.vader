@@ -1,0 +1,265 @@
+
+===============================================================================
+Given (sample text with upper):
+    The quick BrownFox jumps
+===============================================================================
+Do (search 1st upper):
+    0fuaX
+Expect (found T):
+    TXhe quick BrownFox jumps
+--------------------------------
+Do (search 2nd upper):
+    02fuaX
+Expect (found B):
+    The quick BXrownFox jumps
+--------------------------------
+Do (search from upper):
+    _fuaX
+Expect (found B):
+    The quick BXrownFox jumps
+--------------------------------
+Do (search before upper):
+    _tuaX
+Expect (found before B):
+    The quick XBrownFox jumps
+--------------------------------
+Do (search 2nd before upper):
+    _2tuaX
+Expect (found before F):
+    The quick BrownXFox jumps
+--------------------------------------------------
+Do (search backward for upper):
+    g_FuaX
+Expect (found F):
+    The quick BrownFXox jumps
+--------------------------------
+Do (search backward 2nd upper):
+    g_2FuaX
+Expect (found B):
+    The quick BXrownFox jumps
+--------------------------------
+Do (search backward before upper):
+    g_TuaX
+Expect (found after F):
+    The quick BrownFoXx jumps
+--------------------------------
+Do (search backward before 2nd upper):
+    g_2TuaX
+Expect (found after B):
+    The quick BrXownFox jumps
+--------------------------------
+
+===============================================================================
+Given (sample text with series of upper):
+    The QUiCK BRoWNFox jumps
+===============================================================================
+Do (search 1st upper):
+    0fuaX
+Expect (found T):
+    TXhe QUiCK BRoWNFox jumps
+--------------------------------
+Do (search 2nd upper):
+    02fuaX
+Expect (found Q):
+    The QXUiCK BRoWNFox jumps
+--------------------------------
+Do (search 3rd upper):
+    03fuaX
+Expect (found U):
+    The QUXiCK BRoWNFox jumps
+--------------------------------
+Do (search 4th upper):
+    04fuaX
+Expect (found C):
+    The QUiCXK BRoWNFox jumps
+--------------------------------
+Do (search 5th upper):
+    05fuaX
+Expect (found K):
+    The QUiCKX BRoWNFox jumps
+--------------------------------
+Do (search 6th upper):
+    06fuaX
+Expect (found B):
+    The QUiCK BXRoWNFox jumps
+--------------------------------
+Do (search 7th upper):
+    07fuaX
+Expect (found R):
+    The QUiCK BRXoWNFox jumps
+--------------------------------------------------
+Do (search backward 1st upper):
+    $FuaX
+Expect (found F):
+    The QUiCK BRoWNFXox jumps
+--------------------------------
+Do (search backward 2nd upper):
+    $2FuaX
+Expect (found N):
+    The QUiCK BRoWNXFox jumps
+--------------------------------
+Do (search backward 3rd upper):
+    $3FuaX
+Expect (found W):
+    The QUiCK BRoWXNFox jumps
+--------------------------------
+Do (search backward 4th upper):
+    $4FuaX
+Expect (found R):
+    The QUiCK BRXoWNFox jumps
+--------------------------------
+Do (search backward 5th upper):
+    $5FuaX
+Expect (found B):
+    The QUiCK BXRoWNFox jumps
+--------------------------------
+Do (search backward 6th upper):
+    $6FuaX
+Expect (found K):
+    The QUiCKX BRoWNFox jumps
+--------------------------------
+Do (search backward 7th upper):
+    $7FuaX
+Expect (found C):
+    The QUiCXK BRoWNFox jumps
+--------------------------------------------------
+Do (search before 1st upper):
+    0tuaX
+Expect (found before T):
+    XThe QUiCK BRoWNFox jumps
+--------------------------------
+Do (search before 2nd upper):
+    02tuaX
+Expect (found before Q):
+    The XQUiCK BRoWNFox jumps
+--------------------------------
+Do (search before 3rd upper):
+    03tuaX
+Expect (found before U):
+    The QXUiCK BRoWNFox jumps
+--------------------------------
+Do (search before 4th upper):
+    04tuaX
+Expect (found before C):
+    The QUiXCK BRoWNFox jumps
+--------------------------------
+Do (search before 5th upper):
+    05tuaX
+Expect (found before K):
+    The QUiCXK BRoWNFox jumps
+--------------------------------
+Do (search before 6th upper):
+    06tuaX
+Expect (found before B):
+    The QUiCK XBRoWNFox jumps
+--------------------------------
+Do (search before 7th upper):
+    07tuaX
+Expect (found before R):
+    The QUiCK BXRoWNFox jumps
+--------------------------------------------------
+Do (search backward before 1st upper):
+    $TuaX
+Expect (found after F):
+    The QUiCK BRoWNFoXx jumps
+--------------------------------
+Do (search backward before 2nd upper):
+    $2TuaX
+Expect (found after N):
+    The QUiCK BRoWNFXox jumps
+--------------------------------
+Do (search backward before 3rd upper):
+    $3TuaX
+Expect (found after W):
+    The QUiCK BRoWNXFox jumps
+--------------------------------
+Do (search backward before 4th upper):
+    $4TuaX
+Expect (found after R):
+    The QUiCK BRoXWNFox jumps
+--------------------------------
+Do (search backward before 5th upper):
+    $5TuaX
+Expect (found after B):
+    The QUiCK BRXoWNFox jumps
+--------------------------------
+Do (search backward before 6th upper):
+    $6TuaX
+Expect (found after K):
+    The QUiCK XBRoWNFox jumps
+--------------------------------
+Do (search backward before 7th upper):
+    $7TuaX
+Expect (found after C):
+    The QUiCKX BRoWNFox jumps
+--------------------------------------------------
+Do (search after 1st upper):
+    0fxuaX
+Expect (found after T):
+    ThXe QUiCK BRoWNFox jumps
+--------------------------------
+Do (search after 2nd upper):
+    02fxuaX
+Expect (found after Q):
+    The QUXiCK BRoWNFox jumps
+--------------------------------
+Do (search after 3rd upper):
+    03fxuaX
+Expect (found after U):
+    The QUiXCK BRoWNFox jumps
+--------------------------------
+Do (search after 4th upper):
+    04fxuaX
+Expect (found after C):
+    The QUiCKX BRoWNFox jumps
+--------------------------------
+Do (search after 5th upper):
+    05fxuaX
+Expect (found after K):
+    The QUiCK XBRoWNFox jumps
+--------------------------------
+Do (search after 6th upper):
+    06fxuaX
+Expect (found after B):
+    The QUiCK BRXoWNFox jumps
+--------------------------------
+Do (search after 7th upper):
+    07fxuaX
+Expect (found after R):
+    The QUiCK BRoXWNFox jumps
+--------------------------------------------------
+Do (search backward after 1st upper):
+    $FxuaX
+Expect (found before F):
+    The QUiCK BRoWNXFox jumps
+--------------------------------
+Do (search backward after 2nd upper):
+    $2FxuaX
+Expect (found before N):
+    The QUiCK BRoWXNFox jumps
+--------------------------------
+Do (search backward after 3rd upper):
+    $3FxuaX
+Expect (found before W):
+    The QUiCK BRoXWNFox jumps
+--------------------------------
+Do (search backward after 4th upper):
+    $4FxuaX
+Expect (found before R):
+    The QUiCK BXRoWNFox jumps
+--------------------------------
+Do (search backward after 5th upper):
+    $5FxuaX
+Expect (found before B):
+    The QUiCK XBRoWNFox jumps
+--------------------------------
+Do (search backward after 6th upper):
+    $6FxuaX
+Expect (found before K):
+    The QUiCXK BRoWNFox jumps
+--------------------------------
+Do (search backward after 7th upper):
+    $7FxuaX
+Expect (found before C):
+    The QUiXCK BRoWNFox jumps
+--------------------------------------------------

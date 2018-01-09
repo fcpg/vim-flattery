@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Change paths accordingly if you want to run the tests
+vim -Nu <(cat <<EOF
+filetype off
+set rtp+=~/.vim/pack/xtra/opt/vader.vim
+set rtp+=~/.vim/pack/ft/opt/vim-markdown
+set rtp+=~/.vim/pack/ft/opt/vim-markdown/after
+set rtp+=~/.vim/pack/std/start/vim-flattery
+filetype plugin indent on
+syntax enable
+EOF
+) +'Vader test_u.vader test_z.vader test_b.vader test_l.vader test_w.vader'

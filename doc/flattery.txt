@@ -1,0 +1,278 @@
+*flattery.txt*            Just a bunch of f/t maps                     *flattery*
+
+                            flattery MANUAL
+
+1. About Flattery                                  |flattery-about|
+2. Quick Start                                     |flattery-quickstart|
+3. Targets                                         |flattery-targets|
+4. Modifiers                                       |flattery-modifiers|
+5. Options                                         |flattery-options|
+6. Plug Mappings                                   |flattery-plug-mappings|
+7. Changelog                                       |flattery-changelog|
+8. Contribute                                      |flattery-contribute|
+9. License                                         |flattery-license|
+
+=============================================================================
+ABOUT FLATTERY                                                 *flattery-about*
+
+Flattery provides some targets for |f| |F| |t| |T|, either for mere conveniency
+(eg. `fb` jumping to the next closing paren), or offering targets that did not
+exist yet (eg. `fu` jumping to the next uppercase letter).
+
+=============================================================================
+QUICK START                                               *flattery-quickstart*
+
+1. Install the plugin Eg. with Pathogen:
+>
+   cd ~/.vim/bundle && git clone https://github.com/fcpg/vim-flattery
+<
+2. The new targets are available for |f| |F| |t| |T|.
+   Check the full list below.
+
+=============================================================================
+TARGETS                                                      *flattery-targets*
+
+a                                                                 *flattery-fa*
+  Jump to the next closing angle bracket, like `f>`.
+
+b                                                                 *flattery-fb*
+  Jump to the next closing paren, like `f)`.
+
+c                                                                 *flattery-fc*
+  Jump to the next closing curly brace, like `f}`.
+
+r                                                                 *flattery-fr*
+  Jump to the next closing square bracket, like `f]`.
+
+u                                                                 *flattery-fu*
+  Jump to the next uppercase letter.
+
+l                                                                 *flattery-fl*
+  Jump to the next word limit, ie. the char just -after- an "alnum-word".
+  An alnum-word is defined here as a series of alphanumerics,
+  irrespective of the 'iskeyword' or 'isident' options.
+  Note: use `tl` to jump to the last char of an alnum-word, and `fxl` to
+  jump to the second next char following an alnum-word (eg. to jump
+  after a delimiter, like a space).
+
+w                                                                 *flattery-fw*
+  Jump to the next alnum-word.
+  Useful to move around in, for instance, snake-case identifiers
+  like 'did_load_filetypes'.
+
+z                                                                 *flattery-fz*
+  Jump to the char just before end-of-line.
+
+d                                                                 *flattery-fd*
+  Jump to the next dot char `.`.
+
+e                                                                 *flattery-fe*
+  Jump to the next equal sign `=`.
+
+h                                                                 *flattery-fh*
+  Jump to the next hash char `#`.
+
+p                                                                 *flattery-fp*
+  Jump to the next pipe char `|`.
+
+s                                                                 *flattery-fs*
+  Jump to the next slash char `/`.
+
+=============================================================================
+MODIFIERS                                                  *flattery-modifiers*
+
+Some modifiers can be typed just after the |f| |F| |t| |T| keys:
+
+f                                                                 *flattery-ff*
+  Make the search go backward, just like |F|.
+  Only work after `f`.
+
+t                                                                 *flattery-tt*
+  Make the search go backward, just like |T|.
+  Only work after `t`.
+
+g                                                                 *flattery-fg*
+  Jump to the "alternate char" of pairs; if a search like `fb` would
+  jump to the next closing paren, `fgb` will jump to the next opening
+  one.
+
+x                                                                 *flattery-fx*
+  Jump one char farther than a normal search; the reverse of `t`, sort of.
+  Only work with `f` or `F` (ie. `fx` or `Fx`), and only for flattery special
+  targets (eg. `fxb`).
+
+v                                                                 *flattery-fv*
+  Disable special targets for this search, ie. work just like builtin |f|.
+  `fvb` will jump to the next `b` char.
+
+j                                                                 *flattery-fj*
+  Repeat the last |f| |F| |t| |T| jump.
+  Does not wait for another key (which would not be used).
+
+=============================================================================
+OPTIONS                                                      *flattery-options*
+
+g:flattery_f_map                                             *g:flattery_f_map*
+  Flattery "f-like" search key
+  Default: `f`
+
+g:flattery_t_map                                             *g:flattery_t_map*
+  Flattery "t-like" search key
+  Default: `t`
+
+g:flattery_x_char                                           *g:flattery_x_char*
+  Modifier key to jump one char farther (cf. |flattery-fx|).
+  Default: `x`
+
+g:flattery_orig_char                                     *g:flattery_orig_char*
+  Modifier key to disable special targets (cf. |flattery-fv|).
+  Default: `v`
+
+g:flattery_alt_char                                       *g:flattery_alt_char*
+  Modifier key to jump to "alternate char" (cf. |flattery-fg|).
+  Default: `g`
+
+g:flattery_redo_char                                     *g:flattery_redo_char*
+  Modifier key to repeat last search (cf. |flattery-fj|).
+  Default: `j`
+
+g:flattery_nomap_list                                   *g:flattery_nomap_list*
+  List of targets NOT to be mapped.
+  Useful if you want all defaults but one or two.
+  Default: `[]`
+
+g:flattery_nomap_ff                                       *g:flattery_nomap_ff*
+  Set to 1 so that `ff` be NOT mapped to `F`.
+  Default: `0`
+
+g:flattery_all_plugs                                     *g:flattery_all_plugs*
+  Set to 1 so that all `<Plug>` mappings be created.
+  If 0, only those that are actually used (via defaults or |g:flattery_maps|)
+  will be created. This avoids defining a lot of mappings that won't be used.
+  Default: `0`
+
+g:flattery_maps                                               *g:flattery_maps*
+  Dictionary of target keys to target names/values, used to define all
+  flattery mappings.
+  Values can be strings for flattery special targets (eg. `angle`), or
+  one-element list with a char to search (eg. `=`).
+  Check |flattery-plug-mappings| below for the list of valid target names.
+  Default:
+>
+     {
+      \ 'a': 'angle',
+      \ 'b': 'paren',
+      \ 'c': 'curly',
+      \ 'r': 'square',
+      \ 'l': 'limit',
+      \ 'w': 'word',
+      \ 'u': 'upper',
+      \ 'z': 'b4eol',
+      \ 'd': ['.'],
+      \ 'e': ['='],
+      \ 'h': ['#'],
+      \ 'p': ['\|'],
+      \ 's': ['/'],
+      \}
+<
+
+g:flattery_maps_opt                                       *g:flattery_maps_opt*
+  Dictionary of target names to dictionary of options.
+  Valid keys in the latter dict:
+  - `to_closing`, set to 1 to jump to the closing char of pairs (eg. parens)
+  - `alt_dirs`, set to 1 so that a backward search jump to the other char of
+  a given pair (eg. `fb` jumping to closing paren, `Fb` jumping back to 
+  opening one).
+  Default:
+>
+     {
+      \ 'angle':  {},
+      \ 'paren':  {},
+      \ 'curly':  {},
+      \ 'square': {},
+      \ 'limit':  {},
+      \ 'word':   {
+      \   'to_closing': 0,
+      \   'alt_dirs':   0,
+      \ },
+      \ 'upper':  {},
+      \ 'b4eol':  {},
+      \}
+<
+
+g:flattery_default_to_closing                   *g:flattery_default_to_closing*
+  Set to 1 so that forward searches default to the closing element of pairs.
+  Eg. `fb` will search forward for a closing paren.
+  Default: `1`
+
+g:flattery_default_alt_dirs                       *g:flattery_default_alt_dirs*
+  Set to 1 so that backward searches default to the other element of pairs.
+  Eg. `Fb` will search backward for an opening paren.
+  Default: `1`
+
+=============================================================================
+PLUG MAPPINGS                                          *flattery-plug-mappings*
+
+`<Plug>` mappings are available for your own custom mappings.
+
+By default, only those that are actually bound, either by default
+or via |g:flattery_maps|, will be created. You can force the creation of all
+`<Plug>` mappings by setting the |g:flattery_all_plugs| variable to one.
+This is useful if you want to disable all default mappings and bind
+your own keys to `<Plug>` targets.
+
+The naming of `<Plug>` mappings follows the motion+target format.
+
+Valid motion names are:
+  - `ForwardTo`
+  - `BackwardTo`
+  - `ForwardBefore`
+  - `BackwardBefore`
+  - `ForwardAfter`
+  - `BackwardAfter`
+
+Valid target names are:
+  - (`Opening` or `Closing`) + `AngleBracket`
+  - (`Opening` or `Closing`) + `SquareBracket`
+  - (`Opening` or `Closing`) + `Paren`
+  - (`Opening` or `Closing`) + `Curly`
+  - (`Opening` or `Closing`) + `Word`
+  - (`Opening` or `Closing`) + `Limit`
+  - `Dot`
+  - `Equal`
+  - `Hash`
+  - `Pipe`
+  - `Slash`
+  - `UpperChar`
+  - `B4Eol`
+
+Two special mappings:
+ - `<Plug>(flattery)RedoForward`
+ - `<Plug>(flattery)RedoBackward`
+
+All `<Plug>` mappings are prefixed with `<Plug>(flattery)`.
+
+Examples:
+>
+  <Plug>(flattery)BackwardToOpeningLimit
+  <Plug>(flattery)ForwardToUpperChar
+  <Plug>(flattery)ForwardToClosingCurly
+<
+
+=============================================================================
+CHANGELOG                                                  *flattery-changelog*
+
+[1.0] - 2018-01-09
+  - Initial release
+
+=============================================================================
+CONTRIBUTE                                                *flattery-contribute*
+
+Contribute on [Github](https://github.com/fcpg/vim-flattery)
+
+=============================================================================
+LICENSE                                                      *flattery-license*
+
+[Attribution-ShareAlike 4.0 Int.](https://creativecommons.org/licenses/by-sa/4.0/)
+
+ vim: set expandtab sts=2 ts=2 sw=2 tw=78 ft=help norl:

@@ -1,0 +1,189 @@
+
+===============================================================================
+Given (sample text):
+    The (quick brown) fox jumps
+===============================================================================
+Do (search paren):
+    0fbaX
+Expect (found closing paren):
+    The (quick brown)X fox jumps
+--------------------------------
+Do (search before paren):
+    0tbaX
+Expect (found n):
+    The (quick brownX) fox jumps
+--------------------------------
+Do (search after paren):
+    0fxbaX
+Expect (found space after closing paren):
+    The (quick brown) Xfox jumps
+--------------------------------------------------
+Do (search backward for paren):
+    $FbaX
+Expect (found opening paren):
+    The (Xquick brown) fox jumps
+--------------------------------
+Do (search backward before paren):
+    $TbaX
+Expect (found q):
+    The (qXuick brown) fox jumps
+--------------------------------
+Do (search backward after paren):
+    $FxbaX
+Expect (found space before opening paren):
+    The X(quick brown) fox jumps
+--------------------------------------------------
+Do (search alt paren):
+    0fgbaX
+Expect (found opening paren):
+    The (Xquick brown) fox jumps
+--------------------------------
+Do (search before alt paren):
+    0tgbaX
+Expect (found space before opening paren):
+    The X(quick brown) fox jumps
+--------------------------------
+Do (search after alt paren):
+    0fgxbaX
+Expect (found q):
+    The (qXuick brown) fox jumps
+--------------------------------------------------
+Do (search backward for alt paren):
+    $FgbaX
+Expect (found closing paren):
+    The (quick brown)X fox jumps
+--------------------------------
+Do (search backward before alt paren):
+    $TgbaX
+Expect (found space after closing paren):
+    The (quick brown) Xfox jumps
+--------------------------------
+Do (search backward after alt paren):
+    $FgxbaX
+Expect (found n):
+    The (quick brownX) fox jumps
+
+===============================================================================
+Given (sample text with nested parens):
+    The (quick (brown) fox) jumps
+===============================================================================
+Do (search paren):
+    0fbaX
+Expect (found 1st closing paren):
+    The (quick (brown)X fox) jumps
+--------------------------------
+Do (search 2nd paren):
+    02fbaX
+Expect (found 2nd closing paren):
+    The (quick (brown) fox)X jumps
+--------------------------------
+Do (search before paren):
+    0tbaX
+Expect (found n):
+    The (quick (brownX) fox) jumps
+--------------------------------
+Do (search 2nd before paren):
+    02tbaX
+Expect (found x):
+    The (quick (brown) foxX) jumps
+--------------------------------
+Do (search after paren):
+    0fxbaX
+Expect (found space after 1st closing paren):
+    The (quick (brown) Xfox) jumps
+--------------------------------
+Do (search 2nd after paren):
+    02fxbaX
+Expect (found space after 2nd closing paren):
+    The (quick (brown) fox) Xjumps
+--------------------------------------------------
+Do (search backward for paren):
+    $FbaX
+Expect (found 2nd opening paren):
+    The (quick (Xbrown) fox) jumps
+--------------------------------
+Do (search 2nd backward for paren):
+    $2FbaX
+Expect (found 1st opening paren):
+    The (Xquick (brown) fox) jumps
+--------------------------------
+Do (search backward before paren):
+    $TbaX
+Expect (found b):
+    The (quick (bXrown) fox) jumps
+--------------------------------
+Do (search 2nd backward before paren):
+    $2TbaX
+Expect (found q):
+    The (qXuick (brown) fox) jumps
+--------------------------------
+Do (search backward after paren):
+    $FxbaX
+Expect (found space before 2nd opening paren):
+    The (quick X(brown) fox) jumps
+--------------------------------
+Do (search 2nd backward after paren):
+    $2FxbaX
+Expect (found space before 1st opening paren):
+    The X(quick (brown) fox) jumps
+--------------------------------------------------
+Do (search alt paren):
+    0fgbaX
+Expect (found opening paren):
+    The (Xquick (brown) fox) jumps
+--------------------------------
+Do (search 2nd alt paren):
+    02fgbaX
+Expect (found 2nd opening paren):
+    The (quick (Xbrown) fox) jumps
+--------------------------------
+Do (search before alt paren):
+    0tgbaX
+Expect (found space before opening paren):
+    The X(quick (brown) fox) jumps
+--------------------------------
+Do (search 2nd before alt paren):
+    02tgbaX
+Expect (found space before 2nd opening paren):
+    The (quick X(brown) fox) jumps
+--------------------------------
+Do (search after alt paren):
+    0fgxbaX
+Expect (found q):
+    The (qXuick (brown) fox) jumps
+--------------------------------
+Do (search 2nd after alt paren):
+    02fgxbaX
+Expect (found b):
+    The (quick (bXrown) fox) jumps
+--------------------------------------------------
+Do (search backward for alt paren):
+    $FgbaX
+Expect (found 2nd closing paren):
+    The (quick (brown) fox)X jumps
+--------------------------------
+Do (search 2nd backward for alt paren):
+    $2FgbaX
+Expect (found 1st closing paren):
+    The (quick (brown)X fox) jumps
+--------------------------------
+Do (search backward before alt paren):
+    $TgbaX
+Expect (found space after 2nd closing paren):
+    The (quick (brown) fox) Xjumps
+--------------------------------
+Do (search 2nd backward before alt paren):
+    $2TgbaX
+Expect (found space after 1st closing paren):
+    The (quick (brown) Xfox) jumps
+--------------------------------
+Do (search backward after alt paren):
+    $FgxbaX
+Expect (found x):
+    The (quick (brown) foxX) jumps
+--------------------------------
+Do (search 2nd backward after alt paren):
+    $2FgxbaX
+Expect (found n):
+    The (quick (brownX) fox) jumps
+
