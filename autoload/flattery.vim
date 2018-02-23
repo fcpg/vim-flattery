@@ -8,6 +8,9 @@ set cpo&vim
 " Options {{{1
 "--------------
 
+let s:gotgcs = exists('*getcharsearch')
+
+
 " Defaults {{{2
 "---------------
 
@@ -275,8 +278,7 @@ endfun
 "   - fwd if >0 (default), bak if <0
 function! FlatteryRedo(...) abort
   let redodir = a:0 ? a:1 : 1
-  let gotgcs = exists('*getcharsearch')
-  let s = gotgcs ? getcharsearch() : {'char':''}
+  let s = s:gotgcs ? getcharsearch() : {'char':''}
   if s['char'] != ''
     " last f was the default one (eg. 'f<')
     let op1 = s['until']? 't' : 'f'
@@ -315,7 +317,7 @@ function! FlatteryRedo(...) abort
     exe 'norm' "\<Plug>(flattery)Internal".plugmap
   endif
   " restore char search info to avoid side effects
-  if gotgcs
+  if s:gotgcs
     call setcharsearch(s)
   endif
   return ''
@@ -334,12 +336,15 @@ function! flattery#SetPlugMaps() abort
           if mapcmd ==# 'onoremap'
             let pre = 'v:exe "norm!" '
                   \ . 'v:count1.'''
-            let post = '''<Bar>call FlatterySaveLastPlug('''.plugmap.''')<Bar>'
-                  \ . "call setcharsearch({'char':''})<cr>"
+            let post = '''<Bar>call FlatterySaveLastPlug('''.plugmap.''')'
+                  \ .(s:gotgcs?'<Bar>'."call setcharsearch({'char':''})":"")
+                  \ ."<cr>"
           else
             let pre = ''
             let post = "@=FlatterySaveLastPlug('".plugmap."')<cr>"
-                  \  . "@=strpart(setcharsearch({'char':''}), 9999)<cr>"
+                  \  .(s:gotgcs
+                  \     ? "@=strpart(setcharsearch({'char':''}), 9999)<cr>"
+                  \     : "")
           endif
           if op is# 'x'
             let rhs = 'f'.target.'l' 
@@ -481,11 +486,13 @@ function! s:FlatterySetPlugMap(fchar, opts) abort
           let fmt = 'v:exe "norm!" '
                 \ . 'v:count1.''@=search(%s, line("."))''."\<lt>cr>"%s<cr>'
           let postfmt = "<Bar>call FlatterySaveLastPlug('%s')"
-                \ . "<Bar>call setcharsearch({'char':''})"
+                \ . (s:gotgcs?"<Bar>call setcharsearch({'char':''})":"")
         else
           let fmt = '@=strpart(search(%s, line(".")), 9999)<cr>%s'
           let postfmt = "@=FlatterySaveLastPlug('%s')<cr>"
-                \ . "@=strpart(setcharsearch({'char':''}), 9999)<cr>"
+                \ . (s:gotgcs
+                \   ? "@=strpart(setcharsearch({'char':''}), 9999)<cr>"
+                \   : "")
         endif
       else
         echoerr "[FlatterySetPlugMap] Unknown type: <".type.">"
