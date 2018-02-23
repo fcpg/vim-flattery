@@ -557,6 +557,7 @@ function! flattery#SetUserMaps() abort
   " bind user to plug maps
   for [fchar, targets] in items(s:flattery_maps)
     if index(s:flattery_nomap_list, fchar) != -1
+      unlet! fchar targets
       continue
     endif
     " induce type of mapping from option dict
@@ -604,6 +605,7 @@ function! flattery#SetUserMaps() abort
             else
               echoerr "[FlatterySetUserMaps] Bad setting for ".fchar.
                     \ ": <".string(targets).">"
+              unlet! fchar targets
               continue
             endif
           elseif type(targets) is type([]) && len(targets) == 2
@@ -612,6 +614,7 @@ function! flattery#SetUserMaps() abort
           else
             echoerr "[FlatterySetUserMaps] Bad setting for ".fchar.
                   \ ": <".string(targets).">"
+            unlet! fchar targets
             continue
           endif
           let opts       = get(s:flattery_maps_opt, targets, {})
@@ -665,6 +668,7 @@ function! flattery#SetUserMaps() abort
         endif
       endfor
     endfor
+    unlet! fchar targets
   endfor
 endfun
 
