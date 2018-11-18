@@ -26,6 +26,7 @@ let s:flattery_default_maps = {
       \ 'd': ['.'],
       \ 'e': ['='],
       \ 'h': ['#'],
+      \ 'k': ['`'],
       \ 'p': ['\|'],
       \ 's': ['/'],
       \}
@@ -123,6 +124,7 @@ let s:single_target_names = {
       \ '.':  'Dot',
       \ '=':  'Equal',
       \ '#':  'Hash',
+      \ '`':  'Backtick',
       \ '\|': 'Pipe',
       \ '/':  'Slash',
       \}

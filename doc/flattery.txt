@@ -72,6 +72,9 @@ e                                                                 *flattery-fe*
 h                                                                 *flattery-fh*
   Jump to the next hash char `#`.
 
+k                                                                 *flattery-fk*
+  Jump to the next backtick char "`".
+
 p                                                                 *flattery-fp*
   Jump to the next pipe char `|`.
 
@@ -241,6 +244,7 @@ Valid target names are:
   - `Dot`
   - `Equal`
   - `Hash`
+  - `Backtick`
   - `Pipe`
   - `Slash`
   - `UpperChar`
@@ -264,6 +268,9 @@ CHANGELOG                                                  *flattery-changelog*
 
 [1.0] - 2018-01-09
   - Initial release
+
+[1.0a] - 2018-11-18
+  - Add backtick target
 
 =============================================================================
 CONTRIBUTE                                                *flattery-contribute*
